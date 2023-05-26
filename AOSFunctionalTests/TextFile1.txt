@@ -1,0 +1,14 @@
+﻿Customer
+	RegistrationTests.cs
+	LoginTests.cs
+	ProfileTests.cs
+
+Product
+	CatalogTests.cs
+	SearchTests.cs
+	CartTests.cs
+
+Order
+	CheckoutTests.cs
+	PaymentTests.cs
+	ShippingTests.cs
