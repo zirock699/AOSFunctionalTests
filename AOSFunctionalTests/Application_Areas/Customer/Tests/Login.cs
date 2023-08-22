@@ -4,6 +4,7 @@ using HP.LFT.SDK;
 using HP.LFT.SDK.Web;
 using HP.LFT.Verifications;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HP.LFT.SDK.TE;
 
 
 namespace AOSFunctionalTests.Application_Areas.Customer.Tests
@@ -15,7 +16,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            GlobalSetup(context);
+            GlobalSetup(context);  
         }
 
         [TestInitialize]
@@ -28,13 +29,13 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         public void LoginWithValidCredentials_Successfully()
         {
 
-
         }
 
         [TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"..\..\..\AOSFunctionalTests\Data_Sources\customer.csv", "customer#csv", DataAccessMethod.Sequential), DeploymentItem("customer.csv")]
         public void LoginWithInvalidCredentials_Failure()
         {
+
             IBrowser browser = BrowserFactory.Launch(BrowserType.Chrome);
             browser.Navigate("http://advantageonlineshopping.com/#/");
 
@@ -46,7 +47,6 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
 
             var password = TestContext.DataRow["password"].ToString();
             var email = TestContext.DataRow["email"].ToString();
-
 
             var userMenuLink = browser.Describe<ILink>(new LinkDescription
             {
@@ -92,12 +92,9 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
                 TagName = @"LABEL"
             });
             signInResultMessageWebElement.Click();
-            Debug.WriteLine("Visible Text: " + signInResultMessageWebElement.GetVisibleText());
             
+
             Verify.AreEqual(signInResultMessageWebElement.GetVisibleText(), "Incorrect user name or password.");
-
-
-
         }
 
 

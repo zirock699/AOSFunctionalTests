@@ -19,14 +19,713 @@ namespace AOSFunctionalTests.Application_Areas.Customer
 	{
 		#region Constructors
 
+		public CustomerModel()
+		{
+			Name = @"CustomerModel";
+			GoogleChromeWindow = new GoogleChromeWindowNode(this);
+			RebuildDescriptions();
+			
+		}
+
 		public CustomerModel(ITestObject contextTestObject)
 		{
 			Name = @"CustomerModel";
+			GoogleChromeWindow = new GoogleChromeWindowNode(contextTestObject, this);
 			RebuildDescriptions();
 			
 		}
 
 		#endregion
 
+		#region Test Objects
+	
+		public GoogleChromeWindowNode GoogleChromeWindow { get; private set; }
+	
+		#endregion
+	
+		#region Inner Classes
+	
+		public sealed class GoogleChromeWindowNode : WindowNodeBase
+		{
+			#region Constructors
+		
+			public GoogleChromeWindowNode(AppModelBase applicationModel) : base(applicationModel)
+			{
+				ChromeLegacyWindowUiObject = new ChromeLegacyWindowUiObjectNode(this, applicationModel);
+				DisplayName = @" Google Chrome";
+			}
+		
+			public GoogleChromeWindowNode(ITestObject parent, AppModelBase applicationModel) : base(parent, applicationModel)
+			{
+				ChromeLegacyWindowUiObject = new ChromeLegacyWindowUiObjectNode(this, applicationModel);
+				DisplayName = @" Google Chrome";
+			}
+		
+			#endregion
+		
+			#region Description
+		
+			protected override HP.LFT.SDK.StdWin.WindowDescription CreateDescription()
+			{
+				return new HP.LFT.SDK.StdWin.WindowDescription {
+				WindowTitleRegExp = @" Google Chrome",
+				WindowClassRegExp = @"Chrome_WidgetWin_1",
+				IsOwnedWindow = false,
+				IsChildWindow = false
+			};
+			}
+		
+			#endregion
+		
+			#region Test Objects
+		
+			public ChromeLegacyWindowUiObjectNode ChromeLegacyWindowUiObject { get; private set; }
+		
+			#endregion
+		
+			#region Inner Classes
+		
+			public sealed class ChromeLegacyWindowUiObjectNode : UiObjectNodeBase
+			{
+				#region Constructors
+			
+				public ChromeLegacyWindowUiObjectNode(ITestObject parent, AppModelBase applicationModel) : base(parent, applicationModel)
+				{
+					DisplayName = @"Chrome Legacy Window";
+				}
+			
+				#endregion
+			
+				#region Description
+			
+				protected override HP.LFT.SDK.StdWin.UiObjectDescription CreateDescription()
+				{
+					return new HP.LFT.SDK.StdWin.UiObjectDescription {
+					WindowClassRegExp = @"Chrome_RenderWidgetHostHWND"
+				};
+				}
+			
+				#endregion
+			
+			}
+
+			#endregion
+		}
+
+		#endregion
+
+		#region Base Classes
+
+		public abstract class UiObjectNodeBase : AppModelNodeBase<HP.LFT.SDK.StdWin.IUiObject, HP.LFT.SDK.StdWin.UiObjectDescription>, HP.LFT.SDK.StdWin.IUiObject
+		{
+			public UiObjectNodeBase(ITestObject parent, AppModelBase applicationModel) : base(parent, applicationModel) { }
+
+			#region Public Methods
+	
+			public void MouseMove(HP.LFT.SDK.Location moveTo)
+			{
+				 Concrete.MouseMove(moveTo);
+			}
+	
+			public void Click(HP.LFT.SDK.MouseButton button = HP.LFT.SDK.MouseButton.Left)
+			{
+				 Concrete.Click(button);
+			}
+	
+			public void Click(HP.LFT.SDK.ClickArgs args)
+			{
+				 Concrete.Click(args);
+			}
+	
+			public void DoubleClick(HP.LFT.SDK.MouseButton button = HP.LFT.SDK.MouseButton.Left)
+			{
+				 Concrete.DoubleClick(button);
+			}
+	
+			public void DoubleClick(HP.LFT.SDK.ClickArgs args)
+			{
+				 Concrete.DoubleClick(args);
+			}
+	
+			public void SendKeys(string input, HP.LFT.SDK.KeyModifier modifiers)
+			{
+				 Concrete.SendKeys(input, modifiers);
+			}
+	
+			public void SendKeys(string input)
+			{
+				 Concrete.SendKeys(input);
+			}
+	
+			public void DragAndDropOn(HP.LFT.SDK.ISupportDragAndDrop dropTarget)
+			{
+				 Concrete.DragAndDropOn(dropTarget);
+			}
+	
+			public void DragAndDropOn(HP.LFT.SDK.ISupportDragAndDrop dropTarget, HP.LFT.SDK.DragAndDropArgs dragAndDropArgs)
+			{
+				 Concrete.DragAndDropOn(dropTarget, dragAndDropArgs);
+			}
+	
+			public void Scroll(HP.LFT.SDK.ScrollOrientation orientation, HP.LFT.SDK.ScrollType type, int value = 1)
+			{
+				 Concrete.Scroll(orientation, type, value);
+			}
+	
+			public HP.LFT.SDK.IDescription GetDescription()
+			{
+				return Concrete.GetDescription();
+			}
+	
+			public TChild[] FindChildren<TChild>(HP.LFT.SDK.IDescription selector)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.FindChildren<TChild>(selector);
+			}
+	
+			public bool Exists()
+			{
+				return Concrete.Exists();
+			}
+	
+			public bool Exists(uint timeout)
+			{
+				return Concrete.Exists(timeout);
+			}
+	
+			public System.Drawing.Image GetSnapshot()
+			{
+				return Concrete.GetSnapshot();
+			}
+	
+			public void Highlight()
+			{
+				 Concrete.Highlight();
+			}
+	
+			public uint HighlightMatches<TChild>(HP.LFT.SDK.IDescription description)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.HighlightMatches<TChild>(description);
+			}
+	
+			public System.Drawing.Rectangle[] GetTextLocations(string textToFind)
+			{
+				return Concrete.GetTextLocations(textToFind);
+			}
+	
+			public System.Drawing.Rectangle[] GetTextLocations(string textToFind, System.Drawing.Rectangle textArea)
+			{
+				return Concrete.GetTextLocations(textToFind, textArea);
+			}
+	
+			public string GetVisibleText()
+			{
+				return Concrete.GetVisibleText();
+			}
+	
+			public string GetVisibleText(System.Drawing.Rectangle textArea)
+			{
+				return Concrete.GetVisibleText(textArea);
+			}
+	
+			public System.Nullable<System.Drawing.Point> VerifyImageExists(System.Drawing.Image imageToFind, byte similarity = 100)
+			{
+				return Concrete.VerifyImageExists(imageToFind, similarity);
+			}
+	
+			public bool VerifyImageMatch(System.Drawing.Image expectedImage, byte pixelTolerance = 0, byte rgbTolerance = 0)
+			{
+				return Concrete.VerifyImageMatch(expectedImage, pixelTolerance, rgbTolerance);
+			}
+	
+			public bool VerifyImageMatch(System.Drawing.Image expectedImage, HP.LFT.SDK.Utils.ImageMaskArea maskArea, byte pixelTolerance = 0, byte rgbTolerance = 0)
+			{
+				return Concrete.VerifyImageMatch(expectedImage, maskArea, pixelTolerance, rgbTolerance);
+			}
+	
+			public TChild Describe<TChild>(HP.LFT.SDK.IDescription description)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.Describe<TChild>(description);
+			}
+	
+			#endregion
+	
+			#region Public Properties
+	
+			public bool IsRightAligned
+			{
+				get { return Concrete.IsRightAligned; }		
+			}
+	
+			public bool IsRightToLeftLayout
+			{
+				get { return Concrete.IsRightToLeftLayout; }		
+			}
+	
+			public bool IsRightToLeftReading
+			{
+				get { return Concrete.IsRightToLeftReading; }		
+			}
+	
+			public string AccessibleName
+			{
+				get { return Concrete.AccessibleName; }		
+			}
+	
+			public string AttachedText
+			{
+				get { return Concrete.AttachedText; }		
+			}
+	
+			public string Text
+			{
+				get { return Concrete.Text; }		
+			}
+	
+			public HP.LFT.SDK.WindowExtendedStyles WindowExtendedStyle
+			{
+				get { return Concrete.WindowExtendedStyle; }		
+			}
+	
+			public HP.LFT.SDK.WindowStyles WindowStyle
+			{
+				get { return Concrete.WindowStyle; }		
+			}
+	
+			public string WindowClassRegExp
+			{
+				get { return Concrete.WindowClassRegExp; }		
+			}
+	
+			public int WindowId
+			{
+				get { return Concrete.WindowId; }		
+			}
+	
+			public bool IsFocused
+			{
+				get { return Concrete.IsFocused; }		
+			}
+	
+			public string NativeClass
+			{
+				get { return Concrete.NativeClass; }		
+			}
+	
+			public string WindowTitleRegExp
+			{
+				get { return Concrete.WindowTitleRegExp; }		
+			}
+	
+			public System.IntPtr Handle
+			{
+				get { return Concrete.Handle; }		
+			}
+	
+			public System.Drawing.Point Location
+			{
+				get { return Concrete.Location; }		
+			}
+	
+			public System.Drawing.Point AbsoluteLocation
+			{
+				get { return Concrete.AbsoluteLocation; }		
+			}
+	
+			public System.Drawing.Size Size
+			{
+				get { return Concrete.Size; }		
+			}
+	
+			public bool IsEnabled
+			{
+				get { return Concrete.IsEnabled; }		
+			}
+	
+			public bool IsVisible
+			{
+				get { return Concrete.IsVisible; }		
+			}
+	
+			public HP.LFT.SDK.ScrollInfo HorizontalScroll
+			{
+				get { return Concrete.HorizontalScroll; }		
+			}
+	
+			public HP.LFT.SDK.ScrollInfo VerticalScroll
+			{
+				get { return Concrete.VerticalScroll; }		
+			}
+	
+			public HP.LFT.SDK.VerticalScrollPosition VerticalScrollPosition
+			{
+				get { return Concrete.VerticalScrollPosition; }		
+			}
+	
+			public string DisplayName
+			{
+				get { return Concrete.DisplayName; }		
+				set { Concrete.DisplayName = value; }
+			}
+	
+			#endregion
+		}
+
+		public abstract class WindowNodeBase : TopLevelObjectNodeBase<HP.LFT.SDK.StdWin.IWindow, HP.LFT.SDK.StdWin.WindowDescription>, HP.LFT.SDK.StdWin.IWindow
+		{
+			public WindowNodeBase(AppModelBase applicationModel) : base(applicationModel) { }
+	
+			public WindowNodeBase(ITestObject parent, AppModelBase applicationModel) : base(parent, applicationModel) { }
+
+			#region Public Methods
+	
+			public void Activate()
+			{
+				 Concrete.Activate();
+			}
+	
+			public void Activate(HP.LFT.SDK.MouseButton button)
+			{
+				 Concrete.Activate(button);
+			}
+	
+			public void Close()
+			{
+				 Concrete.Close();
+			}
+	
+			public void Maximize()
+			{
+				 Concrete.Maximize();
+			}
+	
+			public void Minimize()
+			{
+				 Concrete.Minimize();
+			}
+	
+			public void Move(System.Drawing.Point point)
+			{
+				 Concrete.Move(point);
+			}
+	
+			public void Move(int x, int y)
+			{
+				 Concrete.Move(x, y);
+			}
+	
+			public void Resize(System.Drawing.Size size)
+			{
+				 Concrete.Resize(size);
+			}
+	
+			public void Resize(int width, int height)
+			{
+				 Concrete.Resize(width, height);
+			}
+	
+			public void Restore()
+			{
+				 Concrete.Restore();
+			}
+	
+			public void MouseMove(HP.LFT.SDK.Location moveTo)
+			{
+				 Concrete.MouseMove(moveTo);
+			}
+	
+			public void Click(HP.LFT.SDK.MouseButton button = HP.LFT.SDK.MouseButton.Left)
+			{
+				 Concrete.Click(button);
+			}
+	
+			public void Click(HP.LFT.SDK.ClickArgs args)
+			{
+				 Concrete.Click(args);
+			}
+	
+			public void DoubleClick(HP.LFT.SDK.MouseButton button = HP.LFT.SDK.MouseButton.Left)
+			{
+				 Concrete.DoubleClick(button);
+			}
+	
+			public void DoubleClick(HP.LFT.SDK.ClickArgs args)
+			{
+				 Concrete.DoubleClick(args);
+			}
+	
+			public void SendKeys(string input, HP.LFT.SDK.KeyModifier modifiers)
+			{
+				 Concrete.SendKeys(input, modifiers);
+			}
+	
+			public void SendKeys(string input)
+			{
+				 Concrete.SendKeys(input);
+			}
+	
+			public void DragAndDropOn(HP.LFT.SDK.ISupportDragAndDrop dropTarget)
+			{
+				 Concrete.DragAndDropOn(dropTarget);
+			}
+	
+			public void DragAndDropOn(HP.LFT.SDK.ISupportDragAndDrop dropTarget, HP.LFT.SDK.DragAndDropArgs dragAndDropArgs)
+			{
+				 Concrete.DragAndDropOn(dropTarget, dragAndDropArgs);
+			}
+	
+			public HP.LFT.SDK.IDescription GetDescription()
+			{
+				return Concrete.GetDescription();
+			}
+	
+			public TChild[] FindChildren<TChild>(HP.LFT.SDK.IDescription selector)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.FindChildren<TChild>(selector);
+			}
+	
+			public bool Exists()
+			{
+				return Concrete.Exists();
+			}
+	
+			public bool Exists(uint timeout)
+			{
+				return Concrete.Exists(timeout);
+			}
+	
+			public System.Drawing.Image GetSnapshot()
+			{
+				return Concrete.GetSnapshot();
+			}
+	
+			public void Highlight()
+			{
+				 Concrete.Highlight();
+			}
+	
+			public uint HighlightMatches<TChild>(HP.LFT.SDK.IDescription description)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.HighlightMatches<TChild>(description);
+			}
+	
+			public System.Drawing.Rectangle[] GetTextLocations(string textToFind)
+			{
+				return Concrete.GetTextLocations(textToFind);
+			}
+	
+			public System.Drawing.Rectangle[] GetTextLocations(string textToFind, System.Drawing.Rectangle textArea)
+			{
+				return Concrete.GetTextLocations(textToFind, textArea);
+			}
+	
+			public string GetVisibleText()
+			{
+				return Concrete.GetVisibleText();
+			}
+	
+			public string GetVisibleText(System.Drawing.Rectangle textArea)
+			{
+				return Concrete.GetVisibleText(textArea);
+			}
+	
+			public System.Nullable<System.Drawing.Point> VerifyImageExists(System.Drawing.Image imageToFind, byte similarity = 100)
+			{
+				return Concrete.VerifyImageExists(imageToFind, similarity);
+			}
+	
+			public bool VerifyImageMatch(System.Drawing.Image expectedImage, byte pixelTolerance = 0, byte rgbTolerance = 0)
+			{
+				return Concrete.VerifyImageMatch(expectedImage, pixelTolerance, rgbTolerance);
+			}
+	
+			public bool VerifyImageMatch(System.Drawing.Image expectedImage, HP.LFT.SDK.Utils.ImageMaskArea maskArea, byte pixelTolerance = 0, byte rgbTolerance = 0)
+			{
+				return Concrete.VerifyImageMatch(expectedImage, maskArea, pixelTolerance, rgbTolerance);
+			}
+	
+			public TChild Describe<TChild>(HP.LFT.SDK.IDescription description)  where TChild:class, HP.LFT.SDK.ITestObject
+			{
+				return Concrete.Describe<TChild>(description);
+			}
+	
+			#endregion
+	
+			#region Public Properties
+	
+			public bool IsActive
+			{
+				get { return Concrete.IsActive; }		
+			}
+	
+			public bool HasBorder
+			{
+				get { return Concrete.HasBorder; }		
+			}
+	
+			public bool HasCaption
+			{
+				get { return Concrete.HasCaption; }		
+			}
+	
+			public bool HasSizebox
+			{
+				get { return Concrete.HasSizebox; }		
+			}
+	
+			public bool HasSystemMenu
+			{
+				get { return Concrete.HasSystemMenu; }		
+			}
+	
+			public bool IsOwnedWindow
+			{
+				get { return Concrete.IsOwnedWindow; }		
+			}
+	
+			public bool IsChildWindow
+			{
+				get { return Concrete.IsChildWindow; }		
+			}
+	
+			public bool IsMdiChildWindow
+			{
+				get { return Concrete.IsMdiChildWindow; }		
+			}
+	
+			public bool IsPopupWindow
+			{
+				get { return Concrete.IsPopupWindow; }		
+			}
+	
+			public bool IsToolWindow
+			{
+				get { return Concrete.IsToolWindow; }		
+			}
+	
+			public bool IsMaximizable
+			{
+				get { return Concrete.IsMaximizable; }		
+			}
+	
+			public bool IsMinimizable
+			{
+				get { return Concrete.IsMinimizable; }		
+			}
+	
+			public HP.LFT.SDK.WindowState WindowState
+			{
+				get { return Concrete.WindowState; }		
+			}
+	
+			public bool IsTopmost
+			{
+				get { return Concrete.IsTopmost; }		
+			}
+	
+			public bool IsRightAligned
+			{
+				get { return Concrete.IsRightAligned; }		
+			}
+	
+			public bool IsRightToLeftLayout
+			{
+				get { return Concrete.IsRightToLeftLayout; }		
+			}
+	
+			public bool IsRightToLeftReading
+			{
+				get { return Concrete.IsRightToLeftReading; }		
+			}
+	
+			public string AccessibleName
+			{
+				get { return Concrete.AccessibleName; }		
+			}
+	
+			public string AttachedText
+			{
+				get { return Concrete.AttachedText; }		
+			}
+	
+			public string Text
+			{
+				get { return Concrete.Text; }		
+			}
+	
+			public HP.LFT.SDK.WindowExtendedStyles WindowExtendedStyle
+			{
+				get { return Concrete.WindowExtendedStyle; }		
+			}
+	
+			public HP.LFT.SDK.WindowStyles WindowStyle
+			{
+				get { return Concrete.WindowStyle; }		
+			}
+	
+			public string WindowClassRegExp
+			{
+				get { return Concrete.WindowClassRegExp; }		
+			}
+	
+			public int WindowId
+			{
+				get { return Concrete.WindowId; }		
+			}
+	
+			public bool IsFocused
+			{
+				get { return Concrete.IsFocused; }		
+			}
+	
+			public string NativeClass
+			{
+				get { return Concrete.NativeClass; }		
+			}
+	
+			public string WindowTitleRegExp
+			{
+				get { return Concrete.WindowTitleRegExp; }		
+			}
+	
+			public System.IntPtr Handle
+			{
+				get { return Concrete.Handle; }		
+			}
+	
+			public System.Drawing.Point Location
+			{
+				get { return Concrete.Location; }		
+			}
+	
+			public System.Drawing.Point AbsoluteLocation
+			{
+				get { return Concrete.AbsoluteLocation; }		
+			}
+	
+			public System.Drawing.Size Size
+			{
+				get { return Concrete.Size; }		
+			}
+	
+			public bool IsEnabled
+			{
+				get { return Concrete.IsEnabled; }		
+			}
+	
+			public bool IsVisible
+			{
+				get { return Concrete.IsVisible; }		
+			}
+	
+			public string DisplayName
+			{
+				get { return Concrete.DisplayName; }		
+				set { Concrete.DisplayName = value; }
+			}
+	
+			#endregion
+		}
+
+		#endregion
 	}
 }
