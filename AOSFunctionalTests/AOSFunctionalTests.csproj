@@ -104,14 +104,16 @@
     <Content Include="Application_Areas\Product\ProductModel.tsrx">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Data_Sources\RegisterCustomer.csv" />
+    <None Include="customer.csv" />
+    <None Include="Data_Sources\customer.csv" />
     <None Include="Data_Sources\PaymentData.csv" />
     <None Include="Data_Sources\ProductData.csv" />
+    <None Include="Data_Sources\RegisterCustomer.csv" />
+    <None Include="PaymentData.csv" />
+    <None Include="ProductData.csv" />
+    <None Include="RegisterCustomer.csv" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="Data_Sources\customer.csv" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -37,6 +37,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         {
 
             IBrowser browser = BrowserFactory.Launch(BrowserType.Chrome);
+            
             browser.Navigate("http://advantageonlineshopping.com/#/");
 
             Debug.WriteLine("First Name: " + TestContext.DataRow["firstname"].ToString());
@@ -47,6 +48,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
 
             var password = TestContext.DataRow["password"].ToString();
             var email = TestContext.DataRow["email"].ToString();
+
 
             var userMenuLink = browser.Describe<ILink>(new LinkDescription
             {
@@ -78,23 +80,34 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
             });
             passwordEditField.SetValue(password);
 
-            var signInBtnundefinedButton = browser.Describe<IButton>(new ButtonDescription
+            var signInBtnButton = browser.Describe<IButton>(new ButtonDescription
             {
                 ButtonType = @"button",
                 Name = @"SIGN IN",
                 TagName = @"BUTTON"
             });
-            signInBtnundefinedButton.Click();
+            signInBtnButton.Click();
 
             var signInResultMessageWebElement = browser.Describe<IWebElement>(new WebElementDescription
             {
-                InnerText = @"Incorrect user name or password.",
-                TagName = @"LABEL"
+                TagName = @"LABEL",
+                InnerText = @"Incorrect user name or password."
             });
-            signInResultMessageWebElement.Click();
-            
+            HP.LFT.Report.Reporter.StartReportingContext("Validate the properties of signInResultMessage", HP.LFT.Report.ReportContextInfo.VerificationMode());
+            Verify.IsTrue(signInResultMessageWebElement.IsVisible, "Verification", "Verify property: isVisible");
+            HP.LFT.Report.Reporter.EndReportingContext();
 
-            Verify.AreEqual(signInResultMessageWebElement.GetVisibleText(), "Incorrect user name or password.");
+
+            browser.Close();
+
+
+
+
+
+
+
+
+
         }
 
 
