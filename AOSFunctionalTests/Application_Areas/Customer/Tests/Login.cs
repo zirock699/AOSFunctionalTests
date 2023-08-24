@@ -5,7 +5,7 @@ using HP.LFT.SDK.Web;
 using HP.LFT.Verifications;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HP.LFT.SDK.TE;
-
+using System.Timers;
 
 namespace AOSFunctionalTests.Application_Areas.Customer.Tests
 {
@@ -98,7 +98,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
             HP.LFT.Report.Reporter.StartReportingContext("Validate the properties of signInResultMessage", HP.LFT.Report.ReportContextInfo.VerificationMode());
             Verify.IsTrue(signInResultMessageWebElement.IsVisible, "Verification", "Verify property: isVisible");
             HP.LFT.Report.Reporter.EndReportingContext();
-
+            System.Threading.Thread.Sleep(40000);
 
             browser.Close();
 
