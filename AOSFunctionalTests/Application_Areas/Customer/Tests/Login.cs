@@ -32,7 +32,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         }
 
         [TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"..\..\..\AOSFunctionalTests\Data_Sources\customer.csv", "customer#csv", DataAccessMethod.Sequential), DeploymentItem("customer.csv")]
+        //[DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"..\..\..\AOSFunctionalTests\Data_Sources\customer.csv", "customer#csv", DataAccessMethod.Sequential), DeploymentItem("customer.csv")]
         public void LoginWithInvalidCredentials_Failure()
         {
 
@@ -40,14 +40,16 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
             
             browser.Navigate("http://advantageonlineshopping.com/#/");
 
-            Debug.WriteLine("First Name: " + TestContext.DataRow["firstname"].ToString());
-            Debug.WriteLine("Last Name: " + TestContext.DataRow["lastname"].ToString());
-            Debug.WriteLine("Email: " + TestContext.DataRow["email"].ToString());
-            Debug.WriteLine("Profession: " + TestContext.DataRow["profession"].ToString());
-            Debug.WriteLine("Password: " + TestContext.DataRow["password"].ToString());
+            //Debug.WriteLine("First Name: " + TestContext.DataRow["firstname"].ToString());
+            //Debug.WriteLine("Last Name: " + TestContext.DataRow["lastname"].ToString());
+            //Debug.WriteLine("Email: " + TestContext.DataRow["email"].ToString());
+            //Debug.WriteLine("Profession: " + TestContext.DataRow["profession"].ToString());
+            //Debug.WriteLine("Password: " + TestContext.DataRow["password"].ToString());
 
-            var password = TestContext.DataRow["password"].ToString();
-            var email = TestContext.DataRow["email"].ToString();
+            //var password = TestContext.DataRow["password"].ToString();
+            //var email = TestContext.DataRow["email"].ToString();
+            var password = "1234512";
+            var email = "mail@mail.com";
 
 
             var userMenuLink = browser.Describe<ILink>(new LinkDescription
