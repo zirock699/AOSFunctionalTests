@@ -74,9 +74,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application_Areas\Customer\CustomerModel.tsrx.cs">
-      <DependentUpon>CustomerModel.tsrx</DependentUpon>
-    </Compile>
     <Compile Include="Application_Areas\Customer\Tests\Login.cs" />
     <Compile Include="Application_Areas\Customer\Tests\Profile.cs" />
     <Compile Include="Application_Areas\Customer\Tests\Registration.cs" />
@@ -92,26 +89,26 @@
     <Compile Include="Application_Areas\Product\Tests\Catalog.cs" />
     <Compile Include="Application_Areas\Product\Tests\Search.cs" />
     <Compile Include="UnitTestClassBase.cs" />
-    <Content Include="TextFile1.txt" />
     <None Include="App.config" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Application_Areas\Customer\CustomerModel.tsrx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Application_Areas\Order\OrderModel.tsrx">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Application_Areas\Product\ProductModel.tsrx">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="customer.csv" />
-    <None Include="Data_Sources\customer.csv" />
-    <None Include="Data_Sources\PaymentData.csv" />
-    <None Include="Data_Sources\ProductData.csv" />
-    <None Include="Data_Sources\RegisterCustomer.csv" />
-    <None Include="PaymentData.csv" />
-    <None Include="ProductData.csv" />
-    <None Include="RegisterCustomer.csv" />
+    <None Include="Data\customer.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\PaymentData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ProductData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RegisterCustomer.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

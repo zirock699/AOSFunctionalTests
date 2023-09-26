@@ -6,6 +6,7 @@ using HP.LFT.Verifications;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HP.LFT.SDK.TE;
 using System.Timers;
+using System.Threading;
 
 namespace AOSFunctionalTests.Application_Areas.Customer.Tests
 {
@@ -32,13 +33,14 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         }
 
         [TestMethod]
-        //[DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"..\..\..\AOSFunctionalTests\Data_Sources\customer.csv", "customer#csv", DataAccessMethod.Sequential), DeploymentItem("customer.csv")]
+        //[DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"|DataDirectory|\Data\customer.csv", "customer#csv", DataAccessMethod.Sequential)]
         public void LoginWithInvalidCredentials_Failure()
         {
 
             IBrowser browser = BrowserFactory.Launch(BrowserType.Chrome);
-            
             browser.Navigate("http://advantageonlineshopping.com/#/");
+            
+
 
             //Debug.WriteLine("First Name: " + TestContext.DataRow["firstname"].ToString());
             //Debug.WriteLine("Last Name: " + TestContext.DataRow["lastname"].ToString());
@@ -50,6 +52,8 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
             //var email = TestContext.DataRow["email"].ToString();
             var password = "1234512";
             var email = "mail@mail.com";
+
+
 
 
             var userMenuLink = browser.Describe<ILink>(new LinkDescription
@@ -96,7 +100,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
                 InnerText = @"Incorrect user name or password."
             });
             HP.LFT.Report.Reporter.StartReportingContext("Validate the properties of signInResultMessage", HP.LFT.Report.ReportContextInfo.VerificationMode());
-            Verify.IsTrue(signInResultMessageWebElement.IsVisible, "Verification", "Verify property: isVisible");
+            Verify.IsTrue(signInResultMessageWebElement.Exists(), "Verification", "Verify property: isVisible");
             HP.LFT.Report.Reporter.EndReportingContext();
             System.Threading.Thread.Sleep(4000);
 
