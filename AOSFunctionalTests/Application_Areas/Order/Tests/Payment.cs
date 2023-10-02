@@ -20,11 +20,13 @@ namespace AOSFunctionalTests.Application_Areas.Order.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void MakePaymentWithValidCreditCard_Successfully()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void MakePaymentWithInvalidCreditCard_Failure()
         {
 

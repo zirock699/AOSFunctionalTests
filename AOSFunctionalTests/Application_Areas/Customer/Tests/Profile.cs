@@ -20,17 +20,20 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void UpdateUserProfile_Successfully()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void ChangePassword_Successfully()
         {
 
         }
 
         [TestCleanup]
+        [Ignore]
         public void TestCleanup()
         {
         }

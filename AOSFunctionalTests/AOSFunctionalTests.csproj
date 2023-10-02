@@ -74,6 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application_Areas\Customer\ApplicationModel1.tsrx.cs">
+      <DependentUpon>ApplicationModel1.tsrx</DependentUpon>
+    </Compile>
     <Compile Include="Application_Areas\Customer\Tests\Login.cs" />
     <Compile Include="Application_Areas\Customer\Tests\Profile.cs" />
     <Compile Include="Application_Areas\Customer\Tests\Registration.cs" />
@@ -95,6 +98,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Application_Areas\Product\ProductModel.tsrx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Application_Areas\Customer\ApplicationModel1.tsrx">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Data\customer.csv">

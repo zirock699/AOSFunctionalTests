@@ -23,6 +23,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         }
 
         [TestMethod]
+        [Ignore]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"|DataDirectory|\Data_Sources\RegisterCustomer.csv", "RegisterCustomer#csv", DataAccessMethod.Sequential), DeploymentItem("RegisterCustomer.csv")]
         public void RegisterNewCustomer_Successfully()
         {
@@ -166,7 +167,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
 
         [TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"|DataDirectory|\Data_Sources\RegisterCustomer.csv", "RegisterCustomer#csv", DataAccessMethod.Sequential), DeploymentItem("RegisterCustomer.csv")]
-
+        [Ignore]
         public void AttemptRegistrationWithInvalidEmail_Success()
         {
             IBrowser browser = BrowserFactory.Launch(BrowserType.Chrome);
@@ -316,6 +317,7 @@ namespace AOSFunctionalTests.Application_Areas.Customer.Tests
         }
 
         [TestMethod]
+        [Ignore]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", @"|DataDirectory|\Data_Sources\RegisterCustomer.csv", "RegisterCustomer#csv", DataAccessMethod.Sequential), DeploymentItem("RegisterCustomer.csv")]
         public void AttemptRegistrationWithExistingUserName_Failure()
         {

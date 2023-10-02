@@ -20,17 +20,20 @@ namespace AOSFunctionalTests.Application_Areas.Order.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void PlaceOrderWithValidData_Successfully()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void PlaceOrderWithInvalidShippingAddress_Failure()
         {
 
         }
 
         [TestMethod]
+        [Ignore]
         public void ApplyCouponCode_Successfully()
         {
 

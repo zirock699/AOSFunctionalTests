@@ -20,18 +20,21 @@ namespace AOSFunctionalTests.Application_Areas.Product.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void ViewProductDetails_Successfully()
         {
 
         }
 
         [TestMethod]
+        [Ignore]
         public void FilterProductsByCategory_Successfully()
         {
 
         }
 
         [TestMethod]
+        [Ignore]
         public void SortProductsByPrice_Successfully()
         {
 

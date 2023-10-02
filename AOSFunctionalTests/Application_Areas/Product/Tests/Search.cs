@@ -15,23 +15,27 @@ namespace AOSFunctionalTests.Application_Areas.Product.Tests
         }
 
         [TestInitialize]
+        [Ignore]
         public void TestInitialize()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void SearchForProductByName_Successfully()
         {
 
         }
 
         [TestMethod]
+        [Ignore]
         public void SearchForProductByInvalidKeyword_Failure()
         {
 
         }
 
         [TestMethod]
+        [Ignore]
         public void SearchWithEmptyKeyword_Failure()
         {
 

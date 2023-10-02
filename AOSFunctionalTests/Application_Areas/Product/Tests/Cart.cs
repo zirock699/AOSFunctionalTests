@@ -15,21 +15,25 @@ namespace AOSFunctionalTests.Application_Areas.Product.Tests
         }
 
         [TestInitialize]
+        [Ignore]
         public void TestInitialize()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void AddProductToCart_Successfully()
         { 
         }
 
         [TestMethod]
+        [Ignore]
         public void RemoveProductFromCart_Successfully()
         {
 
         }
         [TestMethod]
+        [Ignore]
         public void UpdateQuantityInCart_Successfully()
         {
 
